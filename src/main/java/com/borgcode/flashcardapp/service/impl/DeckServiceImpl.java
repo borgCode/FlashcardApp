@@ -19,4 +19,9 @@ public class DeckServiceImpl implements DeckService {
     public List<Deck> getAllDecks() {
         return deckRepository.findAll();
     }
+
+    @Override
+    public Deck getById(Long id) {
+        return deckRepository.findById(id).get();
+    }
 }

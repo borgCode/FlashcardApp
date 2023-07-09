@@ -8,4 +8,6 @@ public interface DeckService {
 
     List<Deck> getAllDecks();
 
+    Deck getById(Long id);
+
 }

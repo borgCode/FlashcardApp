@@ -5,6 +5,8 @@ import com.borgcode.flashcardapp.service.impl.DeckServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class DeckController {
@@ -19,6 +21,13 @@ public class DeckController {
     public String listDecks(Model model) {
         model.addAttribute("decks", deckService.getAllDecks());
         return "decks";
+    }
+    @GetMapping("/decks/{id}")
+    @ResponseBody
+    public String getDeckId(@PathVariable Long id) {
+        System.out.println(deckService.getById(id).getDeckName());
+        return "ID: " + id;
+
     }
 
 
