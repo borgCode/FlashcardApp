@@ -30,7 +30,7 @@ public class DeckController {
     @ResponseBody
     public String getCardsByDeckId(@PathVariable Long id, Model model) {
         model.addAttribute("study", cardService.getCardsByDeckId(id));
-        model.addAttribute("deckName", deckService)
+        model.addAttribute(deckService.getDeckName(id));
         return "study";
 
     }
