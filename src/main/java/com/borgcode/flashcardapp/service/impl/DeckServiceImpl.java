@@ -21,7 +21,9 @@ public class DeckServiceImpl implements DeckService {
     }
 
     @Override
-    public Deck getById(Long id) {
-        return deckRepository.findById(id).get();
+    public String getDeckName(long id) {
+        return deckRepository.findById(id).get().getDeckName();
     }
+
+
 }

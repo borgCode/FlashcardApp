@@ -1,6 +1,8 @@
 package com.borgcode.flashcardapp.controller;
 
+import com.borgcode.flashcardapp.service.CardService;
 import com.borgcode.flashcardapp.service.DeckService;
+import com.borgcode.flashcardapp.service.impl.CardServiceImpl;
 import com.borgcode.flashcardapp.service.impl.DeckServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class DeckController {
 
     private DeckService deckService;
+    private CardService cardService;
 
-    public DeckController(DeckServiceImpl deckServiceImpl) {
+    public DeckController(DeckServiceImpl deckServiceImpl, CardServiceImpl cardServiceImpl) {
         this.deckService = deckServiceImpl;
+        this.cardService = cardServiceImpl;
     }
 
     @GetMapping("/decks")
@@ -22,11 +26,12 @@ public class DeckController {
         model.addAttribute("decks", deckService.getAllDecks());
         return "decks";
     }
-    @GetMapping("/decks/{id}")
+    @GetMapping("/study/{id}")
     @ResponseBody
-    public String getDeckId(@PathVariable Long id) {
-        System.out.println(deckService.getById(id).getDeckName());
-        return "ID: " + id;
+    public String getCardsByDeckId(@PathVariable Long id, Model model) {
+        model.addAttribute("study", cardService.getCardsByDeckId(id));
+        model.addAttribute("deckName", deckService)
+        return "study";
 
     }
 

@@ -20,6 +20,10 @@ public class Card {
     private String frontSide;
     private String backSide;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "deck_id")
+    private Deck deck;
+
 
     public Card() {
     }
@@ -51,5 +55,13 @@ public class Card {
 
     public void setBackSide(String backSide) {
         this.backSide = backSide;
+    }
+
+    public Deck getDeck() {
+        return deck;
+    }
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
     }
 }

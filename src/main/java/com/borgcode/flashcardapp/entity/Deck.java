@@ -17,10 +17,10 @@ public class Deck {
             strategy = GenerationType.IDENTITY,
             generator = "deck_sequence"
     )
-    private Long deckId;
+    private Long id;
     private String deckName;
     @OneToMany
-    @JoinColumn(name="deck_id", referencedColumnName = "deckId")
+    @JoinColumn(name="deck_id", referencedColumnName = "id")
     private List<Card> cards;
 
     public Deck() {
@@ -35,12 +35,12 @@ public class Deck {
         this.cards = cards;
     }
 
-    public long getDeckId() {
-        return deckId;
+    public long getId() {
+        return id;
     }
 
-    public void setDeckId(long deckId) {
-        this.deckId = deckId;
+    public void setId(long deckId) {
+        this.id = deckId;
     }
 
     public String getDeckName() {

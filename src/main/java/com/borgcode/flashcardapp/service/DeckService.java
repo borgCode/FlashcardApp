@@ -7,7 +7,6 @@ import java.util.List;
 public interface DeckService {
 
     List<Deck> getAllDecks();
-
-    Deck getById(Long id);
+    String getDeckName(long id);
 
 }
