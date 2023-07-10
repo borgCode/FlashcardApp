@@ -28,7 +28,7 @@ public class Card {
     public Card() {
     }
 
-    public Card( String frontSide, String backSide) {
+    public Card(String frontSide, String backSide) {
         this.frontSide = frontSide;
         this.backSide = backSide;
     }

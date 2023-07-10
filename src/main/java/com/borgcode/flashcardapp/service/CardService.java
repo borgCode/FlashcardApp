@@ -8,4 +8,5 @@ public interface CardService {
     List<Card> getAllCards();
     List<Card> getCardsByDeckId(Long id);
 
+    Card saveCard(Card card);
 }

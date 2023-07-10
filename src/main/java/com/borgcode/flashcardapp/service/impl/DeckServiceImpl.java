@@ -25,5 +25,10 @@ public class DeckServiceImpl implements DeckService {
         return deckRepository.findById(id).get().getDeckName();
     }
 
+    @Override
+    public Deck saveDeck(Deck deck) {
+        return deckRepository.save(deck);
+    }
+
 
 }

@@ -23,4 +23,9 @@ public class CardServiceImpl implements CardService {
     public List<Card> getCardsByDeckId(Long id) {
         return cardRepository.findAllByDeckId(id);
     }
+
+    @Override
+    public Card saveCard(Card card) {
+        return cardRepository.save(card);
+    }
 }
