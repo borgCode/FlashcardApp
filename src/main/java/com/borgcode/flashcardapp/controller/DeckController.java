@@ -27,10 +27,9 @@ public class DeckController {
         return "decks";
     }
     @GetMapping("/study/{id}")
-    @ResponseBody
     public String getCardsByDeckId(@PathVariable Long id, Model model) {
-        model.addAttribute("study", cardService.getCardsByDeckId(id));
-        model.addAttribute(deckService.getDeckName(id));
+        model.addAttribute("cards", cardService.getCardsByDeckId(id));
+        model.addAttribute("deck", deckService.getDeckName(id));
         return "study";
 
     }
