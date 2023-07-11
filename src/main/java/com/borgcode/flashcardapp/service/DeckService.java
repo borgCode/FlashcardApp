@@ -9,5 +9,6 @@ public interface DeckService {
     List<Deck> getAllDecks();
     String getDeckName(long id);
     Deck saveDeck(Deck deck);
+    Deck getDeckById(Long id);
 
 }
