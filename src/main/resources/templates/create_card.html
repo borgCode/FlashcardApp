@@ -16,7 +16,7 @@
     <div class="container justify-content-center card">
       <h1 class="text-center">Add new card</h1>
       <div class="card-body">
-        <form th:action="@{/study}" th:object="${card}" method="POST">
+        <form th:action="@{/study/{id}(id=${deckId})}" th:object="${card}" method="POST">
           <textarea name="frontSide" th:field="*{frontSide}" placeholder="Input front side" cols="30" rows="8" class="form-control mb-3"></textarea>
           <textarea name="backSide" th:field="*{backSide}" placeholder="Input back side" cols="30" rows="8" class="form-control"></textarea>
           <div class="box-footer mt-3">

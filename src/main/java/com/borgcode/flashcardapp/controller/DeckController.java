@@ -46,6 +46,7 @@ public class DeckController {
     public String getCardsByDeckId(@PathVariable Long id, Model model) {
         model.addAttribute("cards", cardService.getCardsByDeckId(id));
         model.addAttribute("deck", deckService.getDeckName(id));
+        model.addAttribute("deckId", id);
         return "study";
 
     }

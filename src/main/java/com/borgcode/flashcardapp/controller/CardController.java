@@ -21,16 +21,17 @@ public class CardController {
         this.deckService = deckService;
     }
     @GetMapping("/study/{id}/new")
-    public String createCardForm(Model model) {
+    public String createCardForm(@PathVariable Long id, Model model) {
         Card card = new Card();
         model.addAttribute("card", card);
+        model.addAttribute("deckId", id);
         return "create_card";
     }
 
-    @PostMapping("/study/{id}/new")
+    @PostMapping("/study/{id}")
     public String saveCard(@PathVariable Long id, @ModelAttribute("card") Card card) {
         card.setDeck(deckService.getDeckById(id));
         cardService.saveCard(card);
-        return "redirect:study/{id}";
+        return "redirect:/study/" + deckService.getDeckById(id).getId();
     }
 }

@@ -13,7 +13,7 @@
 
 <nav class="navbar navbar-light bg-light my-5">
     <form class="container-fluid justify-content-center">
-        <a class="btn btn-success me-5" type="button" th:href="@{/new}">Add Card</a>
+        <a class="btn btn-success me-5" type="button" th:href="@{/study/{id}/new(id=${deckId})}">Add Card</a>
         <button class="btn btn-primary me-5" type="button">Edit Card</button>
         <button class="btn btn-secondary me-5" type="button">List Cards</button>
         <button class="btn btn-danger" type="button">Delete Card</button>
