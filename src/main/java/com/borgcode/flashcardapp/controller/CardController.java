@@ -34,4 +34,5 @@ public class CardController {
         cardService.saveCard(card);
         return "redirect:/study/" + deckService.getDeckById(id).getId();
     }
+
 }

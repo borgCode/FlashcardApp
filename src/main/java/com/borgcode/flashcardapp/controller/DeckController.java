@@ -1,5 +1,6 @@
 package com.borgcode.flashcardapp.controller;
 
+import com.borgcode.flashcardapp.entity.Card;
 import com.borgcode.flashcardapp.entity.Deck;
 import com.borgcode.flashcardapp.service.CardService;
 import com.borgcode.flashcardapp.service.DeckService;
@@ -44,11 +45,18 @@ public class DeckController {
 
     @GetMapping("/study/{id}")
     public String getCardsByDeckId(@PathVariable Long id, Model model) {
-        model.addAttribute("cards", cardService.getCardsByDeckId(id));
         model.addAttribute("deck", deckService.getDeckName(id));
         model.addAttribute("deckId", id);
         return "study";
 
+    }
+
+    @GetMapping("/study/{id}/list")
+    public String listDeckCards(@PathVariable Long id, Model model) {
+        model.addAttribute("deck", deckService.getDeckName(id));
+        model.addAttribute("cards", cardService.getCardsByDeckId(id));
+        model.addAttribute("deckId", id);
+        return "list_deck_cards";
     }
 
 
