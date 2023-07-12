@@ -30,18 +30,26 @@ public class DeckController {
         return "decks";
     }
 
+    @GetMapping("/decks/{id}")
+    public String deleteDeck(@PathVariable Long id) {
+        deckService.deleteDeckById(id);
+        return "redirect:/decks";
+    }
+
     @GetMapping("/decks/new")
-        public String createDeckForm(Model model) {
-            Deck deck = new Deck();
-            model.addAttribute("deck", deck);
-            return "create_deck";
+    public String createDeckForm(Model model) {
+        Deck deck = new Deck();
+        model.addAttribute("deck", deck);
+        return "create_deck";
 
     }
+
     @PostMapping("/decks")
     public String saveDeck(@ModelAttribute("deck") Deck deck) {
         deckService.saveDeck(deck);
         return "redirect:/decks";
     }
+
 
     @GetMapping("/study/{id}")
     public String getCardsByDeckId(@PathVariable Long id, Model model) {

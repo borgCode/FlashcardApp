@@ -35,5 +35,10 @@ public class DeckServiceImpl implements DeckService {
         return deckRepository.findById(id).get();
     }
 
+    @Override
+    public void deleteDeckById(Long id) {
+        deckRepository.deleteById(id);
+    }
+
 
 }
