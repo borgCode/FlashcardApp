@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDateTime;
+
 @Controller
 public class DeckController {
 
@@ -55,6 +57,14 @@ public class DeckController {
     public String getCardsByDeckId(@PathVariable Long id, Model model) {
         model.addAttribute("deck", deckService.getDeckName(id));
         model.addAttribute("deckId", id);
+        if (cardService.getDueCard(LocalDateTime.now(), deckService.getDeckById(id)) != null) {
+            model.addAttribute("card", cardService.getDueCard(LocalDateTime.now(), deckService.getDeckById(id)));
+        } else {
+            Card card = new Card();
+            card.setFrontSide("No cards to study!");
+            card.setBackSide("No Data");
+            model.addAttribute("card", card);
+        }
         return "study";
 
     }

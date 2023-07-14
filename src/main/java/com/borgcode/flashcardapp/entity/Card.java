@@ -1,6 +1,10 @@
 package com.borgcode.flashcardapp.entity;
 
 import jakarta.persistence.*;
+import org.apache.juli.logging.Log;
+import org.hibernate.annotations.DynamicUpdate;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="cards")
@@ -19,8 +23,9 @@ public class Card {
 
     private String frontSide;
     private String backSide;
+    private LocalDateTime localDateTime;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "deck_id")
     private Deck deck;
 
@@ -28,9 +33,11 @@ public class Card {
     public Card() {
     }
 
-    public Card(String frontSide, String backSide) {
+    public Card(String frontSide, String backSide, LocalDateTime localDateTime) {
         this.frontSide = frontSide;
         this.backSide = backSide;
+        this.localDateTime = localDateTime;
+
     }
 
     public long getCardId() {
@@ -63,5 +70,13 @@ public class Card {
 
     public void setDeck(Deck deck) {
         this.deck = deck;
+    }
+
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
+    }
+
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
     }
 }

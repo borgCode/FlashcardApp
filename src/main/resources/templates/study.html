@@ -16,48 +16,38 @@
         <a class="btn btn-success me-5" type="button" th:href="@{/study/{id}/new(id=${deckId})}">Add Card</a>
         <button class="btn btn-primary me-5" type="button" >Edit Card</button>
         <a class="btn btn-secondary me-5" type="button" th:href="@{/study/{id}/list(id=${deckId})}">List Cards</a>
-        <button class="btn btn-danger" type="button">Delete Card</button>
+        <a class="btn btn-danger" type="button" th:href="@{/study/delete/{deckId}/{cardId}(deckId=${deckId}, cardId=${card.getCardId()})}">Delete Card</a>
 
 
     </form>
 </nav>
 
 
-<div class="container d-flex mb-3 align-items-center justify-content-center">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque faucibus iaculis purus, non aliquam elit
-    vehicula id. Integer ultrices nibh tellus, et tempor nulla porta efficitur. Praesent volutpat vulputate ante,
-    aliquet vulputate orci gravida fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-    cubilia curae; Vestibulum porta sapien et tortor elementum, a accumsan odio imperdiet. Vestibulum scelerisque tellus
-    et nisi tempus, a semper arcu tincidunt. In consequat suscipit orci non varius. Aliquam venenatis, lectus pulvinar
-    imperdiet feugiat, felis mauris imperdiet est, eget imperdiet massa nisi non purus. Phasellus quis eleifend nibh.
-    Integer egestas lectus nisl. Suspendisse tincidunt orci id ipsum molestie, sit amet euismod diam commodo.
+<div class="container d-flex mb-3 align-items-center justify-content-center" th:text="${card.frontSide}">
+
 </div>
 <div class="collapse multi-collapse" id="answer-div">
-    <div id="answer" class="container d-flex align-items-center justify-content-center">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque faucibus iaculis purus, non aliquam elit
-        vehicula id. Integer ultrices nibh tellus, et tempor nulla porta efficitur. Praesent volutpat vulputate ante,
-        aliquet vulputate orci gravida fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-        posuere
-        cubilia curae; Vestibulum porta sapien et tortor elementum, a accumsan odio imperdiet. Vestibulum scelerisque
-        tellus
-        et nisi tempus, a semper arcu tincidunt. In consequat suscipit orci non varius. Aliquam venenatis, lectus
-        pulvinar
-        imperdiet feugiat, felis mauris imperdiet est, eget imperdiet massa nisi non purus. Phasellus quis eleifend
-        nibh.
-        Integer egestas lectus nisl. Suspendisse tincidunt orci id ipsum molestie, sit amet euismod diam commodo.
+    <div id="answer" class="container d-flex align-items-center justify-content-center" th:text="${card.backSide}">
+
     </div>
 </div>
 
 
-<div class="container d-flex align-items-start my-3">
+<div class="container d-flex align-items-start justify-content-center my-3">
     <button class="btn btn-secondary me-3" type="button" , data-bs-toggle="collapse" data-bs-target=".multi-collapse"
             aria-expanded="false" aria-controls="answer-div next-button-div">
         Show Answer
     </button>
-    <div class="collapse multi-collapse" id="next-button-div">
-        <button id="next-btn" class="btn btn-secondary">
-            Next Card
-        </button>
+    <div class=" ms-5 collapse multi-collapse" id="next-button-div">
+        <div id="btns" class="d-flex">
+            <a class="btn me-2 btn-danger" th:href="@{/wrong/{deckId}/{cardId}(deckId=${deckId}, cardId=${card.getCardId()})}">
+                Wrong
+            </a>
+            <a class="btn btn-success" th:href="@{/correct/{deckId}/{cardId}(deckId=${deckId}, cardId=${card.getCardId()})}">
+                Correct
+            </a>
+
+        </div>
     </div>
 
 </div>

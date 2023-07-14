@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDateTime;
+
 @Controller
 public class CardController {
 
@@ -28,9 +30,37 @@ public class CardController {
         return "create_card";
     }
 
+
+
+
+    @GetMapping("/study/delete/{deckId}/{cardId}")
+    public String deleteCard(@PathVariable Long deckId, @PathVariable Long cardId) {
+        cardService.deleteCard(cardId);
+        return "redirect:/study/" + deckService.getDeckById(deckId).getId();
+    }
+    @GetMapping("/wrong/{deckId}/{cardId}")
+    public String setWrongCardDueDate(@PathVariable Long deckId, @PathVariable Long cardId) {
+        Card card = cardService.getCardById(cardId);
+        LocalDateTime localDateTime = LocalDateTime.now().plusSeconds(30);
+        card.setLocalDateTime(localDateTime);
+        cardService.updateCard(card);
+        return "redirect:/study/" + deckService.getDeckById(deckId).getId();
+    }
+
+    @GetMapping("/correct/{deckId}/{cardId}")
+    public String setCorrectCardDueDate(@PathVariable Long deckId, @PathVariable Long cardId) {
+        Card card = cardService.getCardById(cardId);
+        LocalDateTime localDateTime = LocalDateTime.now().plusDays(1);
+        card.setLocalDateTime(localDateTime);
+        cardService.updateCard(card);
+        return "redirect:/study/" + deckService.getDeckById(deckId).getId();
+    }
+
+
     @PostMapping("/study/{id}")
     public String saveCard(@PathVariable Long id, @ModelAttribute("card") Card card) {
         card.setDeck(deckService.getDeckById(id));
+        card.setLocalDateTime(LocalDateTime.now());
         cardService.saveCard(card);
         return "redirect:/study/" + deckService.getDeckById(id).getId();
     }

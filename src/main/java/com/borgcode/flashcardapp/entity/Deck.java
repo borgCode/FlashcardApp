@@ -19,7 +19,7 @@ public class Deck {
     )
     private Long id;
     private String deckName;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="deck_id", referencedColumnName = "id")
     private List<Card> cards;
 
