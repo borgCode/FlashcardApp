@@ -31,7 +31,30 @@ public class CardController {
     }
 
 
+    @GetMapping("/study/edit/{deckId}/{cardId}")
+    public String editCard(@PathVariable Long deckId, @PathVariable Long cardId, Model model) {
+        model.addAttribute("currentCard", cardService.getCardById(cardId));
+        Card card = new Card();
+        model.addAttribute("updatedCard", card);
+        model.addAttribute("deck", deckService.getDeckById(deckId));
+        return "edit_card";
 
+    }
+    @PostMapping("/study/{deckId}/{cardId}")
+    public String updateCard(@PathVariable Long deckId, @PathVariable Long cardId,
+                             @ModelAttribute("updatedCard")Card card,
+                             Model model) {
+        Card existingCard = cardService.getCardById(cardId);
+        existingCard.setCardId(cardId);
+        existingCard.setFrontSide(card.getFrontSide());
+        existingCard.setBackSide(card.getBackSide());
+        existingCard.setLocalDateTime(cardService.getCardById(cardId).getLocalDateTime());
+        cardService.updateCard(existingCard);
+
+        return "redirect:/study/" + deckService.getDeckById(deckId).getId();
+
+
+    }
 
     @GetMapping("/study/delete/{deckId}/{cardId}")
     public String deleteCard(@PathVariable Long deckId, @PathVariable Long cardId) {
