@@ -40,6 +40,7 @@ public class CardController {
         return "edit_card";
 
     }
+
     @PostMapping("/study/{deckId}/{cardId}")
     public String updateCard(@PathVariable Long deckId, @PathVariable Long cardId,
                              @ModelAttribute("updatedCard")Card card,
@@ -60,6 +61,11 @@ public class CardController {
     public String deleteCard(@PathVariable Long deckId, @PathVariable Long cardId) {
         cardService.deleteCard(cardId);
         return "redirect:/study/" + deckService.getDeckById(deckId).getId();
+    }
+    @GetMapping("/study/{id}/list/list-delete/{cardId}")
+    public String deleteCardFromList(@PathVariable Long id, @PathVariable Long cardId) {
+        cardService.deleteCard(cardId);
+        return "redirect:/study/{id}/list";
     }
     @GetMapping("/wrong/{deckId}/{cardId}")
     public String setWrongCardDueDate(@PathVariable Long deckId, @PathVariable Long cardId) {
