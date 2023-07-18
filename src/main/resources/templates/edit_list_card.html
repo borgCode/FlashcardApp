@@ -16,14 +16,14 @@
     <div class="container justify-content-center card">
       <h1 class="text-center">Add new card</h1>
       <div class="card-body">
-        <form th:action="@{/study/{deckId}/{cardId}(deckId=${deckId}, cardId=${currentCard.getCardId()})}" th:object="${updatedCard}" method="POST">
+        <form th:action="@{/study/{deckId}/list/list-edit/{cardId}(deckId=${deckId}, cardId=${currentCard.getCardId()})}" th:object="${updatedCard}" method="POST">
           <textarea name="frontSide" th:field="*{frontSide}" th:placeholder="${currentCard.frontSide}" cols="30" rows="8" class="form-control mb-3"></textarea>
           <textarea name="backSide" th:field="*{backSide}" th:placeholder="${currentCard.backSide}" cols="30" rows="8" class="form-control"></textarea>
           <div class="box-footer mt-3">
             <button class="btn btn-primary">
               Update card
             </button>
-            <a class="ms-5 btn btn-secondary" th:href="@{/study/{deckId}(deckId=${deckId})}">
+            <a class="ms-5 btn btn-secondary" th:href="@{/study/{deckId}/list(deckId=${deckId})}">
               Cancel
             </a>
           </div>
